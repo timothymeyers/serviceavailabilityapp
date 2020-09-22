@@ -5,7 +5,6 @@ from ..com.auditscope import AuditScopeList
 
 import azure.functions as func
 
-
 def main(mytimer: func.TimerRequest) -> None:
     logging.basicConfig()
     logging.getLogger().setLevel(logging.DEBUG)
