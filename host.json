@@ -1,6 +1,10 @@
 {
   "version": "2.0",
   "logging": {
+    "logLevel":{
+      "default": "Trace",
+      "Function":"Trace"
+    },
     "applicationInsights": {
       "samplingSettings": {
         "isEnabled": true,
@@ -8,6 +12,7 @@
       }
     }
   },
+
   "extensionBundle": {
     "id": "Microsoft.Azure.Functions.ExtensionBundle",
     "version": "[1.*, 2.0.0)"
