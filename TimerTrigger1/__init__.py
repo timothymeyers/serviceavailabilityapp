@@ -1,9 +1,10 @@
 import datetime
 import logging
 
+from ..com.auditscope import AuditScopeList
+
 import azure.functions as func
 
-from ..com import auditscope
 
 def main(mytimer: func.TimerRequest) -> None:
     logging.basicConfig()
