@@ -17,6 +17,8 @@ def main(mytimer: func.TimerRequest) -> None:
     if mytimer.past_due:
         logging.warn('The timer is past due!')
 
+    logging.info ("TimeTrigger1 ran at %s", utc_timestamp)
+
     sl = AuditScopeList()
     #sl.initialize()
 
