@@ -3,9 +3,7 @@ import logging
 
 import azure.functions as func
 
-from ..com.auditscope import AuditScopeList
-
-
+from __app__.com.auditscope import AuditScopeList
 
 def main(mytimer: func.TimerRequest) -> None:
     logging.basicConfig()
