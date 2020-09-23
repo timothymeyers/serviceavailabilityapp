@@ -1,7 +1,7 @@
 from lxml import html
 
 import requests
-import pprint
+#import pprint
 import logging
 
 # Constants
