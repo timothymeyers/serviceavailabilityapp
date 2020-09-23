@@ -20,24 +20,28 @@ class AuditScopeList:
         self.__azurePublic = {}
         self.__azureGovt = {}
 
-        logging.debug ("[+===+] AuditScope Initialized")
+        logging.debug ("AuditScope Created")
 
     def initialize(self):
+        logging.debug ("AuditScope - Starting Initialization")
+        
         page = requests.get(AZGOV_AUDIT_SCOPE_LIST)
         tree = html.fromstring(page.content)
 
-        logging.debug ("[+===+] Page retrieved")
+        logging.debug ("AuditScope - Page retrieved")
 
         html_tables = tree.xpath('//table')
 
-        logging.debug ("[+===+] HTML Tables found: Length %d", len(html_tables))
+        logging.debug ("AuditScope - HTML Tables found: Length %d", len(html_tables))
 
         self.__azurePublic = self.__getDictionaryFromTable (html_tables[0])
         self.__azureGovt   = self.__getDictionaryFromTable (html_tables[1])
 
+        logging.debug ("AuditScope - Initialized")
+
     
     def isAtAuditScope(self, service, scope):
-        logging.debug ('[+===+] Checking [' + service + '] at Audit Scope [' + scope + ']')
+        logging.debug ('isAtAuditScope - Checking [' + service + '] at Audit Scope [' + scope + ']')
 
         azPub = self.isAtAuditScopeForCloud(service,scope, "Azure Public", self.__azurePublic)
         azGov = self.isAtAuditScopeForCloud(service,scope, "Azure Government", self.__azureGovt)
@@ -46,24 +50,27 @@ class AuditScopeList:
     
     def isAtAuditScopeForCloud(self, service, scope, cloudName, cloud):
         
+        logging.debug ('isAtAuditScopeForCloud - Checking [%s] at Audit Scope [%s] in [%s]',
+            service, scope, cloudName)
+
         if not cloud:
-            logging.debug ('[+=====+] [' + cloudName + '] Does not exist')
+            logging.info ('isAtAuditScopeForCloud - [' + cloudName + '] Does not exist')
             return False
 
         if not cloud.get(service):
-            logging.debug ('[+=====+] [' + service +'] Does not exist in [' + cloudName + ']')
+            logging.debug ('isAtAuditScopeForCloud - [' + service +'] Does not exist in [' + cloudName + ']')
             return False
 
-        logging.debug ('[+=====+] ' + str(cloud.get(service)))
 
+        logging.debug ('isAtAuditScopeForCloud - Found Service\n%s', str(cloud.get(service)))
 
         checkScope = cloud.get(service).get(scope)
 
         if str(checkScope).__contains__('Check'):
-            logging.debug ('[+=====+] [' + cloudName + '] Check')
+            logging.debug ('isAtAuditScopeForCloud - [%s], Check', cloudName)
             return True
 
-        logging.debug ('[+=====+] [' + cloudName + '] No')
+        logging.debug ('isAtAuditScopeForCloud - [%s], No', cloudName)
         
         return False
 
