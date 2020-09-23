@@ -18,11 +18,11 @@ def main(mytimer: func.TimerRequest) -> None:
     logging.info ("TimeTrigger1 ran at %s", utc_timestamp)
 
     sl = AuditScopeList()
-    #sl.initialize()
+    sl.initialize()
 
-    #service = "API Management"
-    #scope = "DISA IL 2"
+    service = "API Management"
+    scope = "DISA IL 2"
 
-    #flag = sl.isAtAuditScope(service,scope)
-    #logging.info ("Checking [%s] at Audit Scope[%s]: %s", service, scope, flag)
+    flag = sl.isAtAuditScope(service,scope)
+    logging.info ("Checking [%s] at Audit Scope[%s]: %s", service, scope, flag)
     
