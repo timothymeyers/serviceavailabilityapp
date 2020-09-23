@@ -3,5 +3,5 @@
 # Manually managing azure-functions-worker may cause unexpected issues
 
 azure-functions
-requests~=<latest-version>
-lxml~=<latest-version>
+requests
+lxml
