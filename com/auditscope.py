@@ -41,16 +41,19 @@ class AuditScopeList:
 
     
     def isAtAuditScope(self, service, scope):
-        logging.debug ('isAtAuditScope - Checking [' + service + '] at Audit Scope [' + scope + ']')
+        logging.debug ('isAtAuditScope - Checking [' + service + '] at [' + scope + ']')
 
         azPub = self.isAtAuditScopeForCloud(service,scope, "Azure Public", self.__azurePublic)
         azGov = self.isAtAuditScopeForCloud(service,scope, "Azure Government", self.__azureGovt)
+
+        logging.debug ('isAtAuditScope - [%s] at [%s]. Azure Public [%s], Azure Gov [%s]',
+            service, scope, azPub, azGov)
 
         return (azPub | azGov)  
     
     def isAtAuditScopeForCloud(self, service, scope, cloudName, cloud):
         
-        logging.debug ('isAtAuditScopeForCloud - Checking [%s] at Audit Scope [%s] in [%s]',
+        logging.debug ('isAtAuditScopeForCloud - Checking [%s] at [%s] in [%s]',
             service, scope, cloudName)
 
         if not cloud:
@@ -62,15 +65,20 @@ class AuditScopeList:
             return False
 
 
-        logging.debug ('isAtAuditScopeForCloud - Found Service\n%s', str(cloud.get(service)))
+        logging.debug ('isAtAuditScopeForCloud - Found [%s] in [%s]\n%s', 
+            service,
+            cloudName,
+            str(cloud.get(service)))
 
         checkScope = cloud.get(service).get(scope)
 
         if str(checkScope).__contains__('Check'):
-            logging.debug ('isAtAuditScopeForCloud - [%s], Check', cloudName)
+            logging.debug ('isAtAuditScopeForCloud - [%s] in [%s], Check', 
+                service, cloudName)
             return True
 
-        logging.debug ('isAtAuditScopeForCloud - [%s], No', cloudName)
+        logging.debug ('isAtAuditScopeForCloud - [%s] in [%s], No', 
+            service, cloudName)
         
         return False
 
