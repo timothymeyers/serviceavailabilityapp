@@ -38,11 +38,8 @@ jobs:
           # Please change your directory for pip in pushd
           pushd .
           python -m pip install --upgrade pip
-          pip install -r requirements.txt --target=".python_packages/lib/python3.6/site-packages"
+          pip install -r requirements.txt --target=".python_packages/lib/site-packages"
           popd
-      
-      - name: Create Zip File
-        uses: montudor/action-zip@v0.1.0
 
       - name: 'Run Azure Functions Action'
         uses: Azure/functions-action@v1
