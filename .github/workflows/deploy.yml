@@ -39,11 +39,18 @@ jobs:
         path: junit/test-results.xml
       # Use always() to always run this step to publish test results when there are test failures
       if: ${{ always() }}
-    - name: Upload code coverage
+    - name: Upload code coverage (xml)
       uses: actions/upload-artifact@v2
       with:
         name: code-coverage
         path: coverage.xml
+      # Use always() to always run this step to publish test results when there are test failures
+      if: ${{ always() }}
+    - name: Upload code coverage (html)
+      uses: actions/upload-artifact@v2
+      with:
+        name: code-coverage-html
+        path: htmlcov
       # Use always() to always run this step to publish test results when there are test failures
       if: ${{ always() }}
   
