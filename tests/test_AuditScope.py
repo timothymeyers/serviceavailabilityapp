@@ -21,6 +21,9 @@ def test_isInitialized(scopeList):
     #assert scopeList.getAzureGovernmentJson()
     assert True
 
+def test_isAtAuditScopeForCloud_noCloud(scopeList):
+    assert scopeList.isAtAuditScopeForCloud('','','', None) == False
+
 @pytest.mark.parametrize("service, scope, expected_result", [
     ('', 'DoD CC SRG IL 2', False),
     ('', 'FedRAMP Moderate', False),
