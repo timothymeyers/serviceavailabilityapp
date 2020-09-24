@@ -3,6 +3,7 @@ from lxml import html
 import requests
 #import pprint
 import logging
+from re import split
 
 # Constants
 
@@ -14,6 +15,9 @@ AZGOV_AUDIT_SCOPE_LIST = "https://docs.microsoft.com/en-us/azure/azure-governmen
 def text(elt):
     return elt.text_content().replace(u'\xa0', u' ').replace('✔️', "Check")
 
+def camelize(string):
+    return ''.join(a.capitalize() for a in split('([^a-zA-Z0-9])', string)
+       if a.isalnum())
 
 class AuditScopeList:
     def __init__(self):        
@@ -57,6 +61,13 @@ class AuditScopeList:
 
             for scope in dictionary[service].keys():
                 
+                tmp = camelize(scope)
+                scopeCamel = tmp[0].lower() + tmp[1:]
+
+                if dictionary[service][scope] == "Check":
+                    svcDoc[scopeCamel] = True
+
+                """
                 if scope == "DISA IL 2" and dictionary[service][scope] == "Check":
                     svcDoc['disaIL2'] = True
                 if scope == "DISA IL 4" and dictionary[service][scope] == "Check":
@@ -71,6 +82,7 @@ class AuditScopeList:
                     svcDoc['fedRampModerate'] = True
                 if scope == "Planned 2020" and dictionary[service][scope] == "Check":
                     svcDoc['planned2020'] = True
+                """
 
             doc['services'].append(svcDoc)
 

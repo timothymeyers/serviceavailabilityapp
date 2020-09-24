@@ -5,12 +5,23 @@
       "name": "mytimer",
       "type": "timerTrigger",
       "direction": "in",
-      "schedule": "0 0/10 * * * *"
+      "schedule": "0 0 */1 * * *"
     },
     {
       "direction": "out",
       "type": "cosmosDB",
-      "name": "outdoc",
+      "name": "azPubOut",
+      "databaseName": "services",
+      "collectionName": "auditScopes",
+      "leaseCollectionName": "leases",
+      "createLeaseCollectionIfNotExists": true,
+      "connectionStringSetting": "MyCosmosDBConnectionString",
+      "createIfNotExists": true
+    },
+    {
+      "direction": "out",
+      "type": "cosmosDB",
+      "name": "azGovOut",
       "databaseName": "services",
       "collectionName": "auditScopes",
       "leaseCollectionName": "leases",

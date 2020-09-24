@@ -6,7 +6,7 @@ from ..com.auditscope import AuditScopeList
 
 import azure.functions as func
 
-def main(mytimer: func.TimerRequest, outdoc: func.Out[func.Document]):
+def main(mytimer: func.TimerRequest, azPubOut: func.Out[func.Document], azGovOut: func.Out[func.Document]):
     logging.basicConfig()
     logging.getLogger().setLevel(logging.DEBUG)
 
@@ -21,31 +21,22 @@ def main(mytimer: func.TimerRequest, outdoc: func.Out[func.Document]):
     logging.info('Python timer trigger function ran at %s', timestamp)
 
     sl = AuditScopeList()
-    sl.initialize()
-
-    service = "API Management"
-    scope = "DISA IL 2"
-
-    flag = sl.isAtAuditScope(service,scope)
-    logging.info ("Checking [%s] at Audit Scope [%s] - Flag: %s", service, scope, flag)
-    
-    service = "Azure Databricks"
-    scope = "DISA IL 5"
-
-    flag = sl.isAtAuditScope(service,scope)
-    logging.info ("Checking [%s] at Audit Scope [%s] - Flag: %s", service, scope, flag)
-    
+    sl.initialize()   
 
     try:
-        outdata = {
-            "id": "Audit Scopes",
-            "clouds": [
-                sl.getAzureGovernmentJson(),
-                sl.getAzurePublicJson()
-            ]
-        }
+        #outdata = {
+        #    "id": "Audit Scopes",
+        #    "clouds": [
+        #        sl.getAzureGovernmentJson(),
+        #        sl.getAzurePublicJson()
+        #    ]
+        #}
 
-        outdoc.set(func.Document.from_json(json.dumps(outdata)))
+        #outdoc.set(func.Document.from_json(json.dumps(outdata)))
+
+        azPubOut.set(func.Document.from_json(json.dumps(sl.getAzurePublicJson())))
+        azGovOut.set(func.Document.from_json(json.dumps(sl.getAzureGovernmentJson())))
+
     except Exception as e:
         logging.error('Error:')
         logging.error(e)
