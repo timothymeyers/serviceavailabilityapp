@@ -24,7 +24,7 @@ jobs:
         with:
           python-version: 3.8
           
-      - name: 'Run pip'
+      - name: 'Run pip and pytest'
         shell: bash
         run: |
           # If your function app project is not located in your repository's root
@@ -32,15 +32,8 @@ jobs:
           pushd .
           python -m pip install --upgrade pip
           pip install -r requirements.txt --target=".python_packages/lib/site-packages"
-          
-          popd
-      - name: 'Run pytest'
-        shell: bash
-        run: |
-          pushd .
-          pip install pytest
           python -m pytest -v
-          popd  
+          popd
   
   deploy-to-azure:
     # The type of runner that the job will run on
