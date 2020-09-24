@@ -32,11 +32,13 @@ jobs:
           pushd .
           python -m pip install --upgrade pip
           pip install -r requirements.txt --target=".python_packages/lib/site-packages"
+          
           popd
       - name: 'Run pytest'
         shell: bash
         run: |
           pushd .
+          pip install pytest
           python -m pytest -v
           popd  
   
