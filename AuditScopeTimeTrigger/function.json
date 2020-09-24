@@ -1,0 +1,22 @@
+{
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "name": "mytimer",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "0 */10 * * * *"
+    },
+    {
+      "direction": "out",
+      "type": "cosmosDB",
+      "name": "outdoc",
+      "databaseName": "services",
+      "collectionName": "auditScopes",
+      "leaseCollectionName": "leases",
+      "createLeaseCollectionIfNotExists": true,
+      "connectionStringSetting": "MyCosmosDBConnectionString",
+      "createIfNotExists": true
+    }
+  ]
+}

@@ -19,6 +19,8 @@ class AuditScopeList:
     def __init__(self):        
         self.__azurePublic = {}
         self.__azureGovt = {}
+        self.__azPubCosmos = {}
+        self.__azGovCosmos = {}
 
         logging.debug ("AuditScope Created")
 
@@ -37,8 +39,48 @@ class AuditScopeList:
         self.__azurePublic = self.__getDictionaryFromTable (html_tables[0])
         self.__azureGovt   = self.__getDictionaryFromTable (html_tables[1])
 
+        self.__azPubCosmos = self.__getCosmosDBDocuments("Azure Public", self.__azurePublic)
+        self.__azGovCosmos = self.__getCosmosDBDocuments("Azure Government", self.__azureGovt)
+
         logging.debug ("AuditScope - Initialized")
 
+    def __getCosmosDBDocuments(self, id, dictionary):
+        doc = {
+            "id": id,
+            "services": []
+        }
+
+        for service in dictionary.keys():
+            svcDoc = {
+                'serviceName': service
+            }
+
+            for scope in dictionary[service].keys():
+                
+                if scope == "DISA IL 2" and dictionary[service][scope] == "Check":
+                    svcDoc['disaIL2'] = True
+                if scope == "DISA IL 4" and dictionary[service][scope] == "Check":
+                    svcDoc['disaIL4'] = True
+                if scope == "DISA IL 5" and dictionary[service][scope] == "Check":
+                    svcDoc['disaIL5'] = True
+                if scope == "DISA IL 6" and dictionary[service][scope] == "Check":
+                    svcDoc['disaIL6'] = True
+                if scope == "FedRAMP High" and dictionary[service][scope] == "Check":
+                    svcDoc['fedRampHigh'] = True
+                if scope == "FedRAMP Moderate" and dictionary[service][scope] == "Check":
+                    svcDoc['fedRampModerate'] = True
+                if scope == "Planned 2020" and dictionary[service][scope] == "Check":
+                    svcDoc['planned2020'] = True
+
+            doc['services'].append(svcDoc)
+
+        return doc
+
+    def getAzurePublicJson(self):
+        return self.__azPubCosmos
+
+    def getAzureGovernmentJson(self):
+        return self.__azGovCosmos
     
     def isAtAuditScope(self, service, scope):
         logging.debug ('isAtAuditScope - Checking [' + service + '] at [' + scope + ']')

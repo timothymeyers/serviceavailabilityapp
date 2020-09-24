@@ -1,11 +1,12 @@
 import datetime
 import logging
+import json
 
 from ..com.auditscope import AuditScopeList
 
 import azure.functions as func
 
-def main(mytimer: func.TimerRequest) -> None:
+def main(mytimer: func.TimerRequest, outdoc: func.Out[func.Document]):
     logging.basicConfig()
     logging.getLogger().setLevel(logging.DEBUG)
 
@@ -34,3 +35,17 @@ def main(mytimer: func.TimerRequest) -> None:
     flag = sl.isAtAuditScope(service,scope)
     logging.info ("Checking [%s] at Audit Scope [%s] - Flag: %s", service, scope, flag)
     
+
+    try:
+        outdata = {
+            "id": "Audit Scopes",
+            "clouds": [
+                sl.getAzureGovernmentJson(),
+                sl.getAzurePublicJson()
+            ]
+        }
+
+        outdoc.set(func.Document.from_json(json.dumps(outdata)))
+    except Exception as e:
+        logging.error('Error:')
+        logging.error(e)
