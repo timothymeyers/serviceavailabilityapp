@@ -71,7 +71,7 @@ class AuditScopeList:
 
             self.__azCosmos.append(svcDoc)
         
-        logging.debug (self.__azCosmos)
+        # logging.debug (self.__azCosmos)
 
     def __getCosmosDBDocuments(self, id, dictionary):
         doc = {
