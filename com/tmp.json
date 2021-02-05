@@ -1,0 +1,1112 @@
+[
+  {
+    "id": "AI Builder",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "API Management",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Application Change Analysis",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Application Gateway",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Automation",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Active Directory (Free and Basic)",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Active Directory (Premium P1 + P2)",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Active Directory B2C",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Active Directory Domain Services",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Active Directory Provisioning Service",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Advanced Threat Protection",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Advisor",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Analysis Services",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure App Configuration",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure API for FHIR",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Arc enabled Servers",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Bastion",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Blueprints",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Bot Service",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Archive Storage",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Cosmos DB",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Cost Management",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Stack Edge (Data Box Edge)",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Data Box",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True
+  },
+  {
+    "id": "Azure Data Explorer",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Data Share",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Database for MySQL",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Database for PostgreSQL",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Database for MariaDB",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Database Migration Service",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Databricks",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True
+  },
+  {
+    "id": "Azure Data Lake Storage",
+    "cloud": "Azure Public",
+    "planned2021": True
+  },
+  {
+    "id": "Azure DDoS Protection",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Dedicated HSM",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  { "id": "Azure DevOps (formerly VSTS)", "cloud": "Azure Public" },
+  { "id": "Azure DevTest Labs", "cloud": "Azure Public", "planned2021": True },
+  {
+    "id": "Azure DNS",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure for Education",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure File Sync",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Firewall",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Front Door",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure HPC Cache",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Information Protection",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Intune",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure IoT Security",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Internet Analyzer",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Kubernetes Service (AKS)",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Lab Services",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Lighthouse",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Machine Learning Services",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Machine Learning studio",
+    "cloud": "Azure Public",
+    "planned2021": True
+  },
+  {
+    "id": "Azure Managed Applications",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Marketplace Portal",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Maps",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Migrate",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Monitor",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure NetApp Files",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Open Datasets",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Policy",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Private Link",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Public IP",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure RedHat OpenShift",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Resource Graph",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Resource Manager",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Cognitive Search",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Service Manager (RDFE)",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Service Health",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Sentinel",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure SignalR Service",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Site Recovery",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Sphere",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Backup",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Batch",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Cloud Shell",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Cloud Services",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Cognitive Services: Computer Vision",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Cognitive Services: Content Moderator",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Cognitive Services: Custom Vision",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Cognitive Services: Face",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Cognitive Services: Form Recognizer",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Cognitive Services: Language Understanding",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Cognitive Services Personalizer",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Cognitive Services: QnA Maker",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Cognitive Services: Speech Services",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Cognitive Services: Text Analytics",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Cognitive Services: Translator Text",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Cognitive Services: Video Indexer",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Cognitive Services Containers",
+    "cloud": "Azure Public",
+    "planned2021": True
+  },
+  {
+    "id": "Container Instances",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Container Registry",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Content Delivery Network",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Customer Lockbox",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  { "id": "Data Catalog", "cloud": "Azure Public", "planned2021": True },
+  {
+    "id": "Data Factory",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "D365 Integrator App",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Dynamics 365 Commerce",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Dynamics 365 Customer Service",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Dynamics 365 Field Service",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Dynamics 365 Finance",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Dynamics 365 Guides",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Dynamics 365 Supply Chain",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Dynamics 365 Service Omni-Channel Engagement Hub",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Dynamics 365 Customer Engagement (Common Data Service)",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Event Grid",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Microsoft Defender for Endpoint",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Event Hubs",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "ExpressRoute",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Flow",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Functions",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "GitHub AE",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Guest Configuration",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "HDInsight",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Import / Export",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  { "id": "IoT Central", "cloud": "Azure Public", "planned2021": True },
+  {
+    "id": "IoT Hub",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Key Vault",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Load Balancer",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Log Analytics",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Logic Apps",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Media Services",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Microsoft Azure Attestation",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Microsoft Azure portal",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Microsoft Azure Peering Service",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Microsoft Cloud App Security",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Microsoft Graph",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Microsoft Health Bot",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  { "id": "Microsoft Managed Desktop", "cloud": "Azure Public" },
+  {
+    "id": "Microsoft PowerApps",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Microsoft Stream",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Microsoft Threat Experts",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Multi-Factor Authentication",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Network Watcher",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Network Watcher Traffic Analytics",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Notification Hubs",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Power BI Embedded",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Power Virtual Agents",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Redis Cache",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Scheduler",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Security Center",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Service Bus",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Service Fabric",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Azure Synapse Analytics",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "SQL Database",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "SQL Server Stretch Database",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Storage: Blobs (Incl. Azure Data Lake Storage Gen2",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Storage: Disks (incl. Managed Disks)",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Storage: Files",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Storage: Queues",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Storage: Tables",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "StorSimple",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Stream Analytics",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Time Series Insights",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Traffic Manager",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Virtual Machine Scale Sets",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Virtual Machines (incl. Reserved Instances)",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Virtual Network",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Virtual Network NAT",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Virtual WAN",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Visual Studio Codespaces",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "VPN Gateway",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Web Apps (App Service)",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Web Application Firewall)",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Windows 10 IoT Core Services",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  },
+  {
+    "id": "Windows Virtual Desktop",
+    "cloud": "Azure Public",
+    "dodCcSrgIl2": True,
+    "fedrampModerate": True,
+    "fedrampHigh": True
+  }
+]
