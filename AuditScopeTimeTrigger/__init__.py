@@ -6,7 +6,7 @@ from ..com.auditscope import AuditScopeList
 
 import azure.functions as func
 
-def main(mytimer: func.TimerRequest, azPubOut: func.Out[func.Document], azGovOut: func.Out[func.Document]):
+def main(mytimer: func.TimerRequest, azPubOut: func.Out[func.Document], azGovOut: func.Out[func.Document]) -> str:
     logging.basicConfig()
     logging.getLogger().setLevel(logging.DEBUG)
 
@@ -41,14 +41,13 @@ def main(mytimer: func.TimerRequest, azPubOut: func.Out[func.Document], azGovOut
 
         newdocs = func.DocumentList()
 
-
-
         for service in cosmosArray:
-            # logging.info( json.dumps(service) )
-            newdocs.append(func.Document.from_json(json.dumps(service)))
+            logging.info( service ) 
+            # newdocs.append(func.Document.from_dict(json.dumps(service)))
+            newdocs.append(func.Document.from_dict(service))
             # 
         
-        logging.info( newdocs )
+        # logging.info( newdocs )
 
         azPubOut.set(newdocs)
 
