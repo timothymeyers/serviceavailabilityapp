@@ -80,6 +80,10 @@ class AuditScopeList:
         }
 
         for service in dictionary.keys():
+            
+            if service == 'Import / Export':
+                service = 'Import Export'
+            
             svcDoc = {
                 'serviceName': service
             }
