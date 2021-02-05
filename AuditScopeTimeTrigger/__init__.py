@@ -37,9 +37,10 @@ def main(mytimer: func.TimerRequest, azPubOut: func.Out[func.Document], azGovOut
         # azPubOut.set(func.Document.from_json(json.dumps(sl.getAzurePublicJson())))
         # azGovOut.set(func.Document.from_json(json.dumps(sl.getAzureGovernmentJson())))
 
-        cosmosArray = s1.getCosmosArray()
+        cosmosArray = sl.getCosmosArray()
 
         for service in cosmosArray:
+            logging.info( json.dumps(service) )
             azGovOut.set(func.Document.from_json(json.dumps(service)))
 
 
