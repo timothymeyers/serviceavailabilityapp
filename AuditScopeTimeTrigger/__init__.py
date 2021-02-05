@@ -44,10 +44,12 @@ def main(mytimer: func.TimerRequest, azPubOut: func.Out[func.Document], azGovOut
 
 
         for service in cosmosArray:
-            logging.info( json.dumps(service) )
+            # logging.info( json.dumps(service) )
             newdocs.append(func.Document.from_json(json.dumps(service)))
             # 
         
+        logging.info( newdocs )
+
         azPubOut.set(newdocs)
 
 
