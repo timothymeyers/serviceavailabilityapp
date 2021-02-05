@@ -118,6 +118,9 @@ class AuditScopeList:
 
     def getAzureGovernmentJson(self):
         return self.__azGovCosmos
+
+    def getCosmosArray(self):
+        return self.__azCosmos
     
     def isAtAuditScope(self, service, scope):
         logging.debug ('isAtAuditScope - Checking [' + service + '] at [' + scope + ']')

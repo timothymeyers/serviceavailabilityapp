@@ -34,8 +34,16 @@ def main(mytimer: func.TimerRequest, azPubOut: func.Out[func.Document], azGovOut
 
         #outdoc.set(func.Document.from_json(json.dumps(outdata)))
 
-        azPubOut.set(func.Document.from_json(json.dumps(sl.getAzurePublicJson())))
-        azGovOut.set(func.Document.from_json(json.dumps(sl.getAzureGovernmentJson())))
+        # azPubOut.set(func.Document.from_json(json.dumps(sl.getAzurePublicJson())))
+        # azGovOut.set(func.Document.from_json(json.dumps(sl.getAzureGovernmentJson())))
+
+        cosmosArray = s1.getCosmosArray()
+
+        for service in cosmosArray:
+            azGovOut.set(func.Document.from_json(json.dumps(service)))
+
+
+
 
     except Exception as e:
         logging.error('Error:')
