@@ -6,15 +6,13 @@ name: Deploy to Azure
 # events but only for the master branch
 on:
   workflow_run:
-    workflows: ["Unit Tests"]
-    branches: ["master"]
+    workflows: [ "Unit Tests" ]
+    branches: [ "master" ]
     types:
       - completed
   
-
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs: 
-  
   deploy-to-azure:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
