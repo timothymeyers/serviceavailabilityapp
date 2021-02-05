@@ -47,5 +47,5 @@ def main(mytimer: func.TimerRequest, azPubOut: func.Out[func.Document], azGovOut
 
 
     except Exception as e:
-        logging.error('Error:')
-        logging.error(e)
+        logging.error('Error:' + e)
+        return 0
