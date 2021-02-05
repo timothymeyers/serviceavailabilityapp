@@ -25,6 +25,7 @@ class AuditScopeList:
         self.__azureGovt = {}
         self.__azPubCosmos = {}
         self.__azGovCosmos = {}
+        self.__azCosmos = []
 
         logging.debug ("AuditScope Created")
 
@@ -43,10 +44,34 @@ class AuditScopeList:
         self.__azurePublic = self.__getDictionaryFromTable (html_tables[0])
         self.__azureGovt   = self.__getDictionaryFromTable (html_tables[1])
 
-        self.__azPubCosmos = self.__getCosmosDBDocuments("Azure Public", self.__azurePublic)
-        self.__azGovCosmos = self.__getCosmosDBDocuments("Azure Government", self.__azureGovt)
+        # self.__azPubCosmos = self.__getCosmosDBDocuments("Azure Public", self.__azurePublic)
+        # self.__azGovCosmos = self.__getCosmosDBDocuments("Azure Government", self.__azureGovt)
+
+        self.__parseIntoComosDBDocuments("Azure Public", self.__azurePublic)
+        self.__parseIntoComosDBDocuments("Azure Government", self.__azureGovt)
 
         logging.debug ("AuditScope - Initialized")
+
+
+    def __parseIntoComosDBDocuments(self, cloud, dictionary):       
+        
+        for service in dictionary.keys():
+            svcDoc = {
+                'id': service,
+                'cloud':cloud
+            }
+
+            for scope in dictionary[service].keys():
+                
+                tmp = camelize(scope)
+                scopeCamel = tmp[0].lower() + tmp[1:]
+
+                if dictionary[service][scope] == "Check":
+                    svcDoc[scopeCamel] = True
+
+            self.__azCosmos.append(svcDoc)
+        
+        logging.debug (self.__azCosmos)
 
     def __getCosmosDBDocuments(self, id, dictionary):
         doc = {
