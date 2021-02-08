@@ -1,0 +1,33 @@
+{
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "name": "mytimer",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "0 0 */1 * * *"
+    },
+    {
+      "direction": "out",
+      "type": "cosmosDB",
+      "name": "azServicesOut",
+      "databaseName": "services",
+      "collectionName": "productAvailability",
+      "leaseCollectionName": "leases",
+      "createLeaseCollectionIfNotExists": true,
+      "connectionStringSetting": "MyCosmosDBConnectionString",
+      "createIfNotExists": true
+    },
+    {
+      "direction": "out",
+      "type": "cosmosDB",
+      "name": "azCapabilitiesOut",
+      "databaseName": "capabilities",
+      "collectionName": "productAvailability",
+      "leaseCollectionName": "leases",
+      "createLeaseCollectionIfNotExists": true,
+      "connectionStringSetting": "MyCosmosDBConnectionString",
+      "createIfNotExists": true
+    }
+  ]
+}
