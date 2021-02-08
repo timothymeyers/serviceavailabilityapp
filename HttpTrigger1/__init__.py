@@ -34,6 +34,6 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     rows = resp.html.find(
         'table.primary-table tr.category-row, table.primary-table tr.service-row, table.primary-table tr.capability-row')
 
-    print (rows)
+    logging.debug (rows)
 
 
