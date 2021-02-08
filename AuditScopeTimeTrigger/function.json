@@ -10,18 +10,7 @@
     {
       "direction": "out",
       "type": "cosmosDB",
-      "name": "azPubOut",
-      "databaseName": "services",
-      "collectionName": "auditScopes",
-      "leaseCollectionName": "leases",
-      "createLeaseCollectionIfNotExists": true,
-      "connectionStringSetting": "MyCosmosDBConnectionString",
-      "createIfNotExists": true
-    },
-    {
-      "direction": "out",
-      "type": "cosmosDB",
-      "name": "azGovOut",
+      "name": "azCosmosOut",
       "databaseName": "services",
       "collectionName": "auditScopes",
       "leaseCollectionName": "leases",

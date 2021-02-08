@@ -6,7 +6,7 @@ from ..com.auditscope import AuditScopeList
 
 import azure.functions as func
 
-def main(mytimer: func.TimerRequest, azPubOut: func.Out[func.Document], azGovOut: func.Out[func.Document]) -> str:
+def main(mytimer: func.TimerRequest, azCosmosOut: func.Out[func.Document]) -> str:
     logging.basicConfig()
     logging.getLogger().setLevel(logging.DEBUG)
 
@@ -43,17 +43,9 @@ def main(mytimer: func.TimerRequest, azPubOut: func.Out[func.Document], azGovOut
 
         for service in cosmosArray:
             logging.info( service ) 
-            
-            # newdocs.append(func.Document.from_dict(json.dumps(service)))
             newdocs.append(func.Document.from_dict(service))
-            
-        
-        # logging.info( newdocs )
-
-        azPubOut.set(newdocs)
-
-
-
+                   
+        azCosmosOut.set(newdocs)
 
     except Exception as e:
         logging.error('Error:' + e)
