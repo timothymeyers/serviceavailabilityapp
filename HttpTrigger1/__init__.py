@@ -9,15 +9,19 @@ AZGOV_PRODS_BY_REGION = "https://azure.microsoft.com/en-us/global-infrastructure
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
-    session = HTMLSession()
-    resp = session.get(AZGOV_PRODS_BY_REGION, params={
-                        'products': 'all', 'regions': 'usgov-non-regional,us-dod-central,us-dod-east,usgov-arizona,usgov-texas,usgov-virginia'})
-    resp.html.render(sleep=3)
+    try:
+        session = HTMLSession()
+        resp = session.get(AZGOV_PRODS_BY_REGION, params={
+                            'products': 'all', 'regions': 'usgov-non-regional,us-dod-central,us-dod-east,usgov-arizona,usgov-texas,usgov-virginia'})
+        resp.html.render(sleep=3)
 
-    rows = resp.html.find(
-        'table.primary-table tr.category-row, table.primary-table tr.service-row, table.primary-table tr.capability-row')
+        rows = resp.html.find(
+            'table.primary-table tr.category-row, table.primary-table tr.service-row, table.primary-table tr.capability-row')
 
-    logging.debug (rows)
+        logging.debug (rows)
+    except Exception as e:
+        logging.error (e)
+
 
     name = req.params.get('name')
     if not name:
