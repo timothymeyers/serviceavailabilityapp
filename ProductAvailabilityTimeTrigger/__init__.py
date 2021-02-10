@@ -2,7 +2,7 @@ import datetime
 import logging
 import json
 
-from ..com.auditscope import AuditScopeList
+from ..com.product_by_region import AzGovProductAvailabilty
 
 import azure.functions as func
 
@@ -24,20 +24,29 @@ def main(mytimer: func.TimerRequest, azServicesOut: func.Out[func.Document], azC
 
     logging.info('Python timer trigger function ran at %s', timestamp)
 
-    sl = AuditScopeList()
+    sl = AzGovProductAvailabilty()
     sl.initialize()   
 
     try:
-        cosmosArray = sl.getCosmosArray()
+        svcList = sl.getServicesList()
 
-        newdocs = func.DocumentList()
+        svcDocs = func.DocumentList()
 
-        for service in cosmosArray:
+        for service in svcList:
             logging.info( service ) 
-            newdocs.append(func.Document.from_dict(service))
+            svcDocs.append(func.Document.from_dict(service))
 
-        #azServicesOut.set(newdocs)           
-        #azCapabilitiesOut.set(newdocs)
+        azServicesOut.set(svcDocs)           
+
+        capList = sl.getCapabilitiesList()
+
+        capDocs = func.DocumentList()
+
+        for cap in capList:
+            logging.info( cap ) 
+            capDocs.append(func.Document.from_dict(cap))
+
+        azCapabilitiesOut.set(capDocs)
 
     except Exception as e:
         logging.error('Error:' + e)
