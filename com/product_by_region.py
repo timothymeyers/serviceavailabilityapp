@@ -35,7 +35,7 @@ class AzGovProductAvailabilty:
 
     def __getFromWeb(self):
         page = requests.get(AZGOV_PRODS_BY_REGION)
-        soup = BeautifulSoup(page.content)
+        soup = BeautifulSoup(page.content, features='lxml')
         return soup
     
     def __getFromLocal(self):
