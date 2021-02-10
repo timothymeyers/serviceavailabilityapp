@@ -25,7 +25,7 @@ def replace_images(str):
 class AzGovProductAvailabilty:
     def __init__(self):
         self.__created = datetime.now().strftime("%d-%b-%Y (%H:%M:%S.%f)")
-        self.__soup = BeautifulSoup()
+        self.__soup = BeautifulSoup(features='lxml')
         self.__azureGovermentProductAvailablity = {}       
         self.__servicesList = []
         self.__capabilitiesList = []
@@ -38,14 +38,13 @@ class AzGovProductAvailabilty:
         return soup
     
     def __getFromLocal(self):
-        with open("render.html") as f:
+        with open("render.html", encoding='utf-8') as f:
             # content = f.readlines()
             render = html.document_fromstring(f.read())
             render = html.tostring(render)
                             
         soup = BeautifulSoup(render, features='lxml')
         return soup
-
 
     def __replaceSoupImage (self, img_file_name, text):
         imgs = self.__soup.find_all(name="img", attrs={
@@ -126,6 +125,14 @@ class AzGovProductAvailabilty:
 
         return
 
+    def __hydrateServiceAndCapabilityLists(self): 
+    
+        for id, svc in self.__services.items():
+            self.__servicesList.append(svc)
+
+        for id, cap in self.__capabilities.items():
+            self.__capabilitiesList.append(cap)
+
     def __processRow(self, row):
 
         cols = row.find_all(['th','td'])
@@ -135,6 +142,7 @@ class AzGovProductAvailabilty:
             # 'as-of': self.__created,
             'type': row['class'][0],
             'available': False,
+            'ga': [],
             'preview': [],
             'planned-active': [],
             'categories': []   
@@ -142,20 +150,22 @@ class AzGovProductAvailabilty:
         
         for col in cols:
             if (col.has_attr('data-region-slug')):
-                if (col.text.strip().__contains__ ("check")):
+                if (col.text.strip() == "check"):
                     doc[ col['data-region-slug'] ] = True
                     doc['available'] = True
-                elif (col.text.strip().__contains__ ("preview")):                
-                    region = {}
-                    region['region'] = col['data-region-slug']
+                    doc['ga'].append(col['data-region-slug'])
+                
+                if (col.text.strip().__contains__ ("preview")):                
+                    # region = {}
+                    # region['region'] = col['data-region-slug']
 
-                    p = col.find('p', attrs={'class':'ga-expected'})
-                    if p:
-                        region['ga-expected'] = p['ga-expected']
+                    # p = col.find('p', attrs={'class':'ga-expected'})
+                    # if p:
+                    #     region['ga-expected'] = p['ga-expected']
                     
-                    doc['preview'].append(region)                   
+                    doc['preview'].append(col['data-region-slug'])             
 
-                elif (col.text.strip().__contains__ ("planned-active")):
+                if (col.text.strip().__contains__ ("-active")):
                     region = {}
                     region['region'] = col['data-region-slug']
                     
@@ -184,12 +194,82 @@ class AzGovProductAvailabilty:
         self.__soup = self.__removeToolTipContentFromSoup()
 
         self.__hydrateServiceAndCapabilityJsons()
+        self.__hydrateServiceAndCapabilityLists()
 
-        self.printAzGovProductAvailabilty()
-        
+        self.__azureGovermentProductAvailablity = {
+            'created': self.__created,
+            'services': self.__servicesList,
+            'capabilities': self.__capabilitiesList
+        }
+
         return 
 
+    def getProductAvailabilityJson (self):
+        return self.__azureGovermentProductAvailablity
 
+    def getServicesList(self):
+        return self.__servicesList
+
+    def getCapabilitiesList(self):
+        return self.__capabilitiesList
+
+
+
+
+    def isProductAvailable(self, product):
+        return (
+            self.isServiceAvailable(product) 
+            or self.isCapabilityAvailable(product)
+        )
+
+    def __checkAvailableJson (self, id, json):
+        if id in json:
+            return json[id]['available']
+        
+        return False
+
+    def isServiceAvailable(self, service):
+        return self.__checkAvailableJson(service, self.__services)        
+    
+    def isCapabilityAvailable(self, capability):
+        return self.__checkAvailableJson(capability, self.__capabilities)
+    
+
+    def isProductAvailableInRegion(self,product,region):
+        return (
+            self.isServiceAvailableInRegion(product, region) 
+            or self.isCapabilityAvailableInRegion(product, region)
+        )
+
+    def isServiceAvailableInRegion(self,service,region):
+        return self.__checkRegionAvailability(service, region, self.__services)
+    
+    def isCapabilityAvailableInRegion(self, capability, region):
+        return self.__checkRegionAvailability(capability, region, self.__capabilities)
+
+    def __checkRegionAvailability(self, id, region, json):
+        if self.__checkAvailableJson(id, json):
+            if region in json[id]:
+                return json[id][region]            
+        
+        return False    
+
+
+    def getProductPreviewRegions(self, product):
+        return self.__getProductPreviewRegions(product, self.__services) + self.__getProductPreviewRegions(product, self.__capabilities)
+     
+    def __getProductPreviewRegions (self, id, json):
+        if id in json:
+            return json[id]['preview']
+        return []
+
+    def getProductRegionsGATargets(self, product):
+        return self.__getProductPlannedActive(product, self.__services) + self.__getProductPlannedActive(product, self.__capabilities)
+
+    def __getProductPlannedActive(self, id, json):
+        if id in json:
+            return json[id]['planned-active']
+        return []
 
     ## *********************************************************************
     ## public print methods
@@ -198,7 +278,4 @@ class AzGovProductAvailabilty:
         print (self.__soup)
 
     def printAzGovProductAvailabilty(self):
-        print (json.dumps({
-            'services': self.__services,
-            'capabilities': self.__capabilities
-        }))
+        print (json.dumps(self.__azureGovermentProductAvailablity))
