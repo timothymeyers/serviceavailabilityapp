@@ -59,6 +59,7 @@ class AuditScopeList:
         for service in dictionary.keys():
             svcDoc = {
                 'id': "sc-" + str(i),
+                "docType": "audit-scope",
                 'prod-id': service,
                 'cloud':cloud
             }

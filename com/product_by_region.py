@@ -147,6 +147,7 @@ class AzGovProductAvailabilty:
             'prod-id': cols[0].text.strip().replace(u'\u2013', u'-'),
             # 'as-of': self.__created,
             'type': row['class'][0],
+            "docType": "availability",
             'available': False,
             'ga': [],
             'preview': [],
