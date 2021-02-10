@@ -1,0 +1,30 @@
+{
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "get"
+      ]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "$return"
+    },
+    {
+      "direction": "out",
+      "type": "cosmosDB",
+      "name": "cosmosDB",
+      "databaseName": "products-normalized",
+      "collectionName": "products",
+      "leaseCollectionName": "leases",
+      "createLeaseCollectionIfNotExists": true,
+      "connectionStringSetting": "MyCosmosDBConnectionString",
+      "createIfNotExists": true
+    }
+  ]
+}

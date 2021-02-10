@@ -2,8 +2,11 @@ import logging
 
 import azure.functions as func
 
+from ..com.auditscope import AuditScopeList
+from ..com.product_by_region import AzGovProductAvailabilty
 
 def main(req: func.HttpRequest, cosmosDB: func.Out[func.Document]) -> func.HttpResponse:
+    
     logging.info('Python HTTP trigger function processed a request.')
 
     name = req.params.get('name')
@@ -14,6 +17,16 @@ def main(req: func.HttpRequest, cosmosDB: func.Out[func.Document]) -> func.HttpR
             pass
         else:
             name = req_body.get('name')
+
+    ## ***************************************************************
+
+    sc = AuditScopeList()
+    sc.initialize()
+
+    av = AzGovProductAvailabilty()
+    av.initialize()  
+
+    ## ***************************************************************
 
     if name:
         return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
