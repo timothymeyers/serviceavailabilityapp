@@ -3,9 +3,6 @@ from com.auditscope import AuditScopeList
 
 # "Constaints"
 
-AZGOV_AUDIT_SCOPE_LIST = "https://docs.microsoft.com/en-us/azure/azure-government/compliance/azure-services-in-fedramp-auditscope#azure-government-services-by-audit-scope"
-
-
 # "Fixtures"
 @pytest.fixture(scope="session")
 def scopeList():
