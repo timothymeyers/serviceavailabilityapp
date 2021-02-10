@@ -78,18 +78,22 @@ class AzGovProductAvailabilty:
 
         lastCategory = ""
         lastService = ""
+        c = 0
+        s = 0
         for row in rows[2:]:
             processedRow = self.__processRow(row)
             if (processedRow['type'] == "category-row"):              
-                lastCategory = processedRow['id']
+                lastCategory = processedRow['prod-id']
                 
             elif (processedRow['type'] == "service-row"):
-                id = processedRow['id']
-
+                id = processedRow['prod-id']
+                
                 processedRow['capabilities'] = []
 
                 if (id not in service_json):
+                    processedRow['id'] = "svc-" + str(s)
                     service_json[id] = processedRow
+                    s=s+1
                 
                 try:
                     service_json[id]['categories'].index (lastCategory)
@@ -99,10 +103,12 @@ class AzGovProductAvailabilty:
                 lastService = id
 
             else:
-                id = processedRow['id']
+                id = processedRow['prod-id']
 
                 if (id not in capability_json):
+                    processedRow['id'] = "cap-" + str(c)
                     capability_json[id] = processedRow
+                    c=c+1
                
                 capability_json[id]['service'] = lastService
                 
@@ -137,8 +143,8 @@ class AzGovProductAvailabilty:
 
         cols = row.find_all(['th','td'])
 
-        doc = {
-            'id': cols[0].text.strip().replace(u'\u2013', u'-'),
+        doc = {            
+            'prod-id': cols[0].text.strip().replace(u'\u2013', u'-'),
             # 'as-of': self.__created,
             'type': row['class'][0],
             'available': False,

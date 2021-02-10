@@ -55,9 +55,11 @@ class AuditScopeList:
 
     def __parseIntoComosDBDocuments(self, cloud, dictionary):       
         
+        i = 0
         for service in dictionary.keys():
             svcDoc = {
-                'id': service,
+                'id': "sc-" + str(i),
+                'prod-id': service,
                 'cloud':cloud
             }
 
@@ -71,6 +73,7 @@ class AuditScopeList:
 
             self.__azCosmos.append(svcDoc)
         
+            i = i+1
         # logging.debug (self.__azCosmos)
 
     def __getCosmosDBDocuments(self, id, dictionary):
