@@ -132,3 +132,4 @@ local.settings.json
 
 # VSCODE
 .vscode
+*.json
