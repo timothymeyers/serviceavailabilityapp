@@ -6,3 +6,4 @@ azure-functions
 requests
 lxml
 requests_html
+bs4
