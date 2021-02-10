@@ -191,7 +191,7 @@ class AzGovProductAvailabilty:
 
     def initialize(self):
         
-        self.__soup = self.__getFromLocal()
+        self.__soup = self.__getFromWeb()
         self.__soup = self.__soup.find(attrs={"class":"primary-table"})
         
         self.__soup = self.__replaceSoupImage("preview-active.svg", "preview-active")
