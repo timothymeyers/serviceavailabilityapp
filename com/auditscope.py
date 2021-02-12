@@ -4,6 +4,7 @@ import requests
 #import pprint
 import logging
 from re import split
+import json
 
 # Constants
 
@@ -26,6 +27,7 @@ class AuditScopeList:
         self.__azPubCosmos = {}
         self.__azGovCosmos = {}
         self.__azCosmos = []
+        self.__azCosmosJson = {}
 
         logging.debug ("AuditScope Created")
 
@@ -49,6 +51,7 @@ class AuditScopeList:
 
         self.__parseIntoComosDBDocuments("Azure Public", self.__azurePublic)
         self.__parseIntoComosDBDocuments("Azure Government", self.__azureGovt)
+        self.__parseIntoComosDBDocumentsMerged()
 
         logging.debug ("AuditScope - Initialized")
 
@@ -73,9 +76,62 @@ class AuditScopeList:
                     svcDoc[scopeCamel] = True
 
             self.__azCosmos.append(svcDoc)
-        
+
             i = i+1
         # logging.debug (self.__azCosmos)
+
+    def __parseIntoComosDBDocumentsMerged(self): 
+
+        cosmos = {}
+
+        ### start with public
+
+        i = 0
+        for svc in self.__azurePublic.keys():
+            svcDoc = {
+                'id': "sc-" + str(i),
+                "docType": "audit-scope",
+                'prod-id': svc,
+                'azure-public': {}
+            }
+            i = i + 1
+
+
+            for scope in self.__azurePublic[svc].keys():                    
+                tmp = camelize(scope)
+                scopeCamel = tmp[0].lower() + tmp[1:]
+
+                if self.__azurePublic[svc][scope] == "Check":
+                    svcDoc['azure-public'][scopeCamel] = True
+
+            cosmos[svc] = svcDoc
+
+        ### lets do gov't
+
+        for svc in self.__azureGovt.keys():
+            
+            if svc in cosmos.keys():
+                svcDoc = cosmos[svc]
+                svcDoc['azure-government'] = {}
+            else:           
+                svcDoc = {
+                    'id': "sc-" + str(i),
+                    "docType": "audit-scope",
+                    'prod-id': svc,
+                    'azure-government': {}
+                }
+                i = i + 1
+
+            for scope in self.__azureGovt[svc].keys():                    
+                tmp = camelize(scope)
+                scopeCamel = tmp[0].lower() + tmp[1:]
+
+                if self.__azureGovt[svc][scope] == "Check":
+                    svcDoc['azure-government'][scopeCamel] = True
+
+            cosmos[svc] = svcDoc
+            
+            self.__azCosmosJson = cosmos
 
     def __getCosmosDBDocuments(self, id, dictionary):
         doc = {
@@ -130,6 +186,9 @@ class AuditScopeList:
     def getCosmosArray(self):
         return self.__azCosmos
     
+    def getCosmosJsonMerged(self):
+        return self.__azCosmosJson
+
     def isAtAuditScope(self, service, scope):
         logging.debug ('isAtAuditScope - Checking [' + service + '] at [' + scope + ']')
 
