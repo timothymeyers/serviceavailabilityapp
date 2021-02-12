@@ -24,7 +24,7 @@ def main(req: func.HttpRequest, cosmosDB: func.Out[func.Document]) -> func.HttpR
     sc.initialize()
 
     av = AzGovProductAvailabilty()
-    av.initialize()  
+    av.initialize()
 
     ## ***************************************************************
 
@@ -35,3 +35,13 @@ def main(req: func.HttpRequest, cosmosDB: func.Out[func.Document]) -> func.HttpR
              "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
              status_code=200
         )
+
+
+def normalize (sc, av):
+
+    scList = sc.getCosmosArray()
+    avList = av.getProductAvailabilityJson()  
+
+    
+
+    return {}
