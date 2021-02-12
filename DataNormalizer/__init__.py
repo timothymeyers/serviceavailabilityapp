@@ -30,9 +30,9 @@ def main(req: func.HttpRequest, cosmosDB: func.Out[func.Document]) -> func.HttpR
     av = AzGovProductAvailabilty()
     av.initialize()
 
-    m = merge (sc, av)
+    # m = merge (sc, av)
 
-    logging.debug(json.dumps(m))
+    # logging.debug(json.dumps(m))
 
     # ***************************************************************
 
