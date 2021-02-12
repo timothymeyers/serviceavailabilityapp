@@ -5,6 +5,7 @@ import azure.functions as func
 from ..com.auditscope import AuditScopeList
 from ..com.product_by_region import AzGovProductAvailabilty
 import ..com.data_mapping as maps
+import json
 
 
 def main(req: func.HttpRequest, cosmosDB: func.Out[func.Document]) -> func.HttpResponse:
@@ -29,6 +30,8 @@ def main(req: func.HttpRequest, cosmosDB: func.Out[func.Document]) -> func.HttpR
     av.initialize()
 
     m = merge (sc, av)
+
+    logging.debug(json.dumps(m))
 
     # ***************************************************************
 
