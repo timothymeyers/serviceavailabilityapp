@@ -4,7 +4,8 @@ import azure.functions as func
 
 from ..com.auditscope import AuditScopeList
 from ..com.product_by_region import AzGovProductAvailabilty
-import com.data_mapping as maps
+from ..com import data_mapping as maps
+
 import json
 
 
