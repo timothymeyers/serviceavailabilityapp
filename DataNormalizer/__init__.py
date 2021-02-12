@@ -10,7 +10,9 @@ import json
 
 
 def main(req: func.HttpRequest, cosmosDB: func.Out[func.Document]) -> func.HttpResponse:
-
+    logging.basicConfig()
+    logging.getLogger().setLevel(logging.DEBUG)
+    
     logging.info('Python HTTP trigger function processed a request.')
 
     name = req.params.get('name')
