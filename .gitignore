@@ -134,3 +134,5 @@ local.settings.json
 .vscode
 out.*
 app.py
+*.txt
+*.json
