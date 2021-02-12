@@ -21,39 +21,6 @@ def main():
 
     return
 
-
-def merge2(sc, av):
-
-    merged = {}
-
-    scList = sc.getCosmosJsonMerged()
-    avList = av.getProductAvailabilityJson()
-
-    # start with services
-    for svc in avList['services']:
-        d = {}
-        d.update(svc)
-
-        merged[svc['prod-id']] = d
-
-    for id, prod in scList.items():
-        print(id)
-        if id in merged:
-            merged[id].update(prod)
-            merged[id]['docType'] = "merged"
-            merged[id].pop('type')
-        else:
-            a = 0
-
-    for cap in avList['capabilities']:
-        lookupId = cap['service'] + ' ' + cap['prod-id']
-        #print ("cap:", cap['prod-id'])
-
-    # print (json.dumps(merged))
-
-    return
-
-
 def merge(sc, av):
 
     merged_services = {svc: {} for svc in maps.service_list}
