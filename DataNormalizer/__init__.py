@@ -30,9 +30,9 @@ def main(req: func.HttpRequest, cosmosDB: func.Out[func.Document]) -> func.HttpR
     av = AzGovProductAvailabilty()
     av.initialize()
 
-    # m = merge (sc, av)
+    m = merge (sc, av)
 
-    # logging.debug(json.dumps(m))
+    logging.debug(json.dumps(m))
 
     # ***************************************************************
 
@@ -50,7 +50,7 @@ def merge (sc, av):
     merged_services = {svc: {} for svc in maps.service_list}
     merged_capabilities = {cap: {} for cap in maps.capability_list}
 
-    scList = sc.getCosmosArray()
+    scList = sc.getCosmosJsonMerged()
     avList = av.getProductAvailabilityJson()
 
     for p in (avList['services'] + avList['capabilities']):
