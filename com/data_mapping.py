@@ -27,8 +27,8 @@ service_map = {
     'Azure DB for MySQL': 'Azure Database for MySQL',
     'Azure DB for PostgreSQL': 'Azure Database for PostgreSQL',
     'Azure DB for MariaDB': 'Azure Database for MariaDB',
-    'Azure Event Grid':'Event Grid',
-    'Machine Learning Services' : 'Azure Machine Learning',
+    'Azure Event Grid': 'Event Grid',
+    'Machine Learning Services': 'Azure Machine Learning',
     'Data Box': 'Azure Data Box',
 }
 
@@ -549,3 +549,24 @@ capability_service_map = {
     'Web Apps': 'App Service'
 
 }
+
+us_regions = [
+    "us-central",
+    "us-east",
+    "us-east-2",
+    "us-north-central",
+    "us-south-central",
+    "us-west-central",
+    "us-west",
+    "us-west-2",
+    "non-regional"
+]
+
+usgov_regions = [
+    "us-dod-central",
+    "us-dod-east",
+    "usgov-arizona",
+    "usgov-texas",
+    "usgov-virginia",
+    "usgov-non-regional"
+]
