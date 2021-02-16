@@ -40,7 +40,7 @@ class AzGovProductAvailabilty:
         self.__capabilities = {}
 
     def __getFromWeb(self):
-        page = requests.get(AZGOV_PRODS_BY_REGION)
+        page = requests.get(AZ_US_PRODS_BY_REGION)
         soup = BeautifulSoup(page.content, features='lxml')
 
         return soup
