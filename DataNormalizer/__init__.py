@@ -32,19 +32,17 @@ def main(req: func.HttpRequest, cosmosDB: func.Out[func.Document]) -> func.HttpR
     av = AzGovProductAvailabilty()
     av.initialize()
 
-    m = merge (sc, av)
+    m = merge(sc, av)
 
-    #logging.debug(json.dumps(m))
-
+    # logging.debug(json.dumps(m))
 
     l = func.DocumentList()
 
     for i in m.values():
-        logging.info( i ) 
+        logging.info(i)
         l.append(func.Document.from_dict(i))
 
     cosmosDB.set(l)
-
 
     # ***************************************************************
 
@@ -57,13 +55,43 @@ def main(req: func.HttpRequest, cosmosDB: func.Out[func.Document]) -> func.HttpR
         )
 
 
-def merge (sc, av):
+def merge(sc, av):
 
-    merged_services = {svc: {} for svc in maps.service_list}
-    merged_capabilities = {cap: {} for cap in maps.capability_list}
+    blankCloud = {
+        "available": False,
+        "scopes": [],
+        "ga": [],
+        "preview": [],
+        "planned-active": []
+    }
+
+    merged_services = {svc: {
+        'prod-id': svc,
+        'type': 'service',
+        'capabilities': [],
+        'categories': [],
+        'azure-public': blankCloud.copy(),
+        'azure-government': blankCloud.copy()
+    } for svc in maps.service_list}
+
+    merged_capabilities = {cap: {
+        'prod-id': cap,
+        'type': 'capability',
+        'service': maps.capability_service_map[cap],
+        'categories': [],
+        'azure-public': blankCloud.copy(),
+        'azure-government': blankCloud.copy()
+    } for cap in maps.capability_list}
+
+    # print(json.dumps({
+    #     'svc': merged_services,
+    #     'cap': merged_capabilities
+    # }))
 
     scList = sc.getCosmosJsonMerged()
     avList = av.getProductAvailabilityJson()
+
+    # initialize using availability list
 
     for p in (avList['services'] + avList['capabilities']):
 
@@ -73,57 +101,94 @@ def merge (sc, av):
         else:
             pId = clean_product_name(p['prod-id'])
 
-        pDoc = {}
-        pDoc.update(p)
-        pDoc['prod-id'] = pId
-        pDoc.pop('docType')
-        pDoc.pop('id')
+        try:
+            if (pId in maps.service_list):
 
-        if (pId in maps.service_list):
-            pDoc['type'] = "service"
-            merged_services[pId].update(pDoc)
+                merged_services[pId]['capabilities'] = p['capabilities'][:]
+                merged_services[pId]['categories'] = list(p['categories'])
 
-        if (pId in maps.capability_list):
-            pDoc['type'] = "capability"
+                merged_services[pId]['azure-public']['ga'] = p['azure-public']['ga'][:]
+                merged_services[pId]['azure-public']['available'] = (
+                    len(p['azure-public']['ga']) > 0)
+                merged_services[pId]['azure-public']['preview'] = list(
+                    p['azure-public']['preview'])
+                merged_services[pId]['azure-public']['planned-active'] = list(
+                    p['azure-public']['planned-active'])
 
-            if (pId in maps.capability_service_map):
-                pDoc['service'] = maps.capability_service_map[pId]
+                merged_services[pId]['azure-government']['ga'] = list(
+                    p['azure-government']['ga'])
+                merged_services[pId]['azure-government']['available'] = (
+                    len(p['azure-government']['ga']) > 0)
+                merged_services[pId]['azure-government']['preview'] = list(
+                    p['azure-government']['preview'])
+                merged_services[pId]['azure-government']['planned-active'] = list(
+                    p['azure-government']['planned-active'])
 
-            if "capabilities" in pDoc.keys():
-                pDoc.pop('capabilities')
+            elif (pId in maps.capability_list):
+                merged_capabilities[pId]['categories'] = list(p['categories'])
 
-            merged_capabilities[pId].update(pDoc)
+                merged_capabilities[pId]['azure-public']['ga'] = list(
+                    p['azure-public']['ga'])
+                merged_capabilities[pId]['azure-public']['available'] = (
+                    len(p['azure-public']['ga']) > 0)
+                merged_capabilities[pId]['azure-public']['preview'] = list(
+                    p['azure-public']['preview'])
+                merged_capabilities[pId]['azure-public']['planned-active'] = list(
+                    p['azure-public']['planned-active'])
 
-        # else:
-        #     print ('Oh no! [avlist]', pId)
+                merged_capabilities[pId]['azure-government']['ga'] = list(
+                    p['azure-government']['ga'])
+                merged_capabilities[pId]['azure-government']['available'] = (
+                    len(p['azure-government']['ga']) > 0)
+                merged_capabilities[pId]['azure-government']['preview'] = list(
+                    p['azure-government']['preview'])
+                merged_capabilities[pId]['azure-government']['planned-active'] = list(
+                    p['azure-government']['planned-active'])
+
+        except KeyError as e:
+            print("Error")
+            print('\te', e)
+            print('\tpId', pId)
+
+    # print(json.dumps({
+    #    'svc': merged_services,
+    #    'cap': merged_capabilities
+    # }))
 
     for pId, p in scList.items():
         pId = clean_product_name(pId)
 
-        pDoc = {}
-        pDoc.update(p)
-        pDoc['prod-id'] = pId
-        pDoc.pop('docType')
-        pDoc.pop('id')
+        try:
 
-        if (pId in maps.service_list):
-            pDoc['type'] = "service"
+            if (pId in maps.service_list and "azure-public" in p and len(p['azure-public']['scopes']) > 0):
+                merged_services[pId]['azure-public']['scopes'] = list(
+                    p['azure-public']['scopes'])
+            if (pId in maps.service_list and "azure-government" in p and len(p['azure-government']['scopes']) > 0):
+                merged_services[pId]['azure-government']['scopes'] = list(
+                    p['azure-government']['scopes'])
 
-            if (pId not in merged_services):
-                merged_services[pId] = {}
+            if (pId in maps.capability_list and "azure-public" in p and len(p['azure-public']['scopes']) > 0):
+                merged_capabilities[pId]['azure-public']['scopes'] = list(
+                    p['azure-public']['scopes'])
+            if (pId in maps.capability_list and "azure-government" in p and len(p['azure-government']['scopes']) > 0):
+                merged_capabilities[pId]['azure-government']['scopes'] = list(
+                    p['azure-government']['scopes'])
 
-            merged_services[pId].update(pDoc)
+            # if (pId == "Virtual Machines"):
+            #    print ("VM", p)
+            #    print ('\t', merged_services[pId])
 
-        if (pId in maps.capability_list):
-            pDoc['type'] = "capability"
+        except KeyError as e:
+            print("Error")
+            print('\te', e)
+            print('\tpId', pId)
+            if (pId in maps.service_list):
+                print('\tsvc', merged_services[pId])
+            if (pId in maps.capability_list):
+                print('\tcap', merged_capabilities[pId])
+            print('\ts-p', p)
 
-            if (pId in maps.capability_service_map):
-                pDoc['service'] = maps.capability_service_map[pId]
-
-            merged_capabilities[pId].update(pDoc)
-
-        # else:
-        #    print ('Oh no! [scopes]', pId)
+    # print(json.dumps({'svc': merged_services,'cap': merged_capabilities}))
 
     return map_capabilities_to_services(merged_services, merged_capabilities)
 
