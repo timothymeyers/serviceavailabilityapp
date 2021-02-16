@@ -34,6 +34,7 @@ class AuditScopeList:
         self.__azCosmosJson = {}
 
         logging.debug("AuditScope Created")
+        self.initialize()
 
     def initialize(self):
         logging.debug("AuditScope - Starting Initialization")

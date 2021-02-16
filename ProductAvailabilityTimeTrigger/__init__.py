@@ -25,7 +25,7 @@ def main(mytimer: func.TimerRequest, azServicesOut: func.Out[func.Document], azC
     logging.info('Python timer trigger function ran at %s', timestamp)
 
     sl = AzGovProductAvailabilty()
-    sl.initialize()   
+    # sl.initialize()   
 
     try:
         svcList = sl.getServicesList()

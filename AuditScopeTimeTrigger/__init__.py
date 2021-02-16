@@ -21,7 +21,7 @@ def main(mytimer: func.TimerRequest, azCosmosOut: func.Out[func.Document]) -> st
     logging.info('Python timer trigger function ran at %s', timestamp)
 
     sl = AuditScopeList()
-    sl.initialize()   
+    #sl.initialize()   
 
     try:
         #outdata = {

@@ -9,7 +9,7 @@ from com.product_by_region import AzGovProductAvailabilty
 @pytest.fixture(scope="session")
 def availList():
     l = AzGovProductAvailabilty()
-    l.initialize()
+    # l.initialize()
     return l
 
 # Tests

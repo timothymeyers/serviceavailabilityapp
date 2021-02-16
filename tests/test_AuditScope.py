@@ -7,7 +7,7 @@ from com.auditscope import AuditScopeList
 @pytest.fixture(scope="session")
 def scopeList():
     l = AuditScopeList()
-    l.initialize()
+    # l.initialize()
     return l
 
 
