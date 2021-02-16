@@ -1,4 +1,14 @@
 
+
+def clean_product_name(name):
+
+    if (name in service_map):
+        return service_map[name]
+    elif (name in capability_map):
+        return capability_map[name]
+
+    return name
+
 # Brute Force data mapping
 
 service_map = {
