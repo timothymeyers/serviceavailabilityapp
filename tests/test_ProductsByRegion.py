@@ -4,53 +4,60 @@ from com.product_by_region import AzGovProductAvailabilty
 # "Constaints"
 
 # "Fixtures"
+
+
 @pytest.fixture(scope="session")
 def availList():
     l = AzGovProductAvailabilty()
     l.initialize()
     return l
 
-#Tests
+# Tests
 
-def test_isInitialized(availList):      
+
+def test_isInitialized(availList):
     assert len(availList.getServicesList()) > 0
     assert len(availList.getCapabilitiesList()) > 0
     assert availList.getProductAvailabilityJson()
 
-@pytest.mark.parametrize("service, expected_result", [
-    ("Azure Databricks", True),
-    ("Microsoft Genomics",False),
-    ('Azure Blueprints',False),
-    ('Windows Virtual Desktop',False)
-])
-def test_isServiceAvailable(availList, service, expected_result):
-    assert availList.isServiceAvailable(service) == expected_result
 
-@pytest.mark.parametrize("capability, expected_result", [
-    ("H-series", True),  
-    ("Hb-series", False),  
-    ("Hc-series", False)     
+@pytest.mark.parametrize("service, cloud, expected_result", [
+    ("Azure Databricks", "azure-government", True),
+    ("Microsoft Genomics", "azure-government", False),
+    ('Azure Blueprints', "azure-government", False),
+    ('Windows Virtual Desktop', "azure-government", False)
 ])
-def test_isCapabilityAvailable(availList, capability, expected_result):
-    assert availList.isCapabilityAvailable(capability) == expected_result
+def test_isServiceAvailable(availList, service, cloud, expected_result):
+    assert availList.isServiceAvailable(service, cloud) == expected_result
+
+
+@pytest.mark.parametrize("capability, cloud, expected_result", [
+    ("H-series", "azure-government", True),
+    ("Hb-series", "azure-government", False),
+    ("Hc-series", "azure-government", False)
+])
+def test_isCapabilityAvailable(availList, capability, cloud, expected_result):
+    assert availList.isCapabilityAvailable(
+        capability, cloud) == expected_result
 
 
 @pytest.mark.parametrize("product, expected_result", [
     ("Azure Databricks", True),
-    ("Azure Bot Services",True),
-    ("Azure Cognitive Search",True),
-    ("Microsoft Genomics",False),
-    ("Azure Machine Learning",True),
-    ("Machine Learning Studio",False),
-    ("Azure Cognitive Services",True),
-    ("Azure Open Datasets",False),
-    ("Project Bonsai",False),    
-    ("H-series", True),  
-    ("Hb-series", False),  
-    ("Hc-series", False)  
+    ("Azure Bot Services", True),
+    ("Azure Cognitive Search", True),
+    ("Microsoft Genomics", False),
+    ("Azure Machine Learning", True),
+    ("Machine Learning Studio", False),
+    ("Azure Cognitive Services", True),
+    ("Azure Open Datasets", False),
+    ("Project Bonsai", False),
+    ("H-series", True),
+    ("Hb-series", False),
+    ("Hc-series", False)
 ])
-def test_isProductAvailable(availList, product, expected_result):
-    assert availList.isProductAvailable(product) == expected_result
+def test_isProductAvailableAzureGovernment(availList, product, expected_result):
+    assert availList.isProductAvailable(
+        product, "azure-government") == expected_result
 
 
 @pytest.mark.parametrize("prod, region, expected_result", [
@@ -97,31 +104,34 @@ def test_isProductAvailable(availList, product, expected_result):
     ('Video Indexer', 'usgov-texas', False)
 ])
 def test_isProductAvailableInRegion(availList, prod, region, expected_result):
-    assert availList.isProductAvailableInRegion(prod, region) == expected_result
+    assert availList.isProductAvailableInRegion(
+        prod, region) == expected_result
 
-@pytest.mark.parametrize("product", [
-    ('Windows Virtual Desktop'),
-#    ('Anomoly Detector', 'usgov-arizona'),
-#    ('Anomoly Detector', 'usgov-virginia'),
-#    ('Microsoft Genomics', False),
+
+@pytest.mark.parametrize("product, cloud", [
+    ('Windows Virtual Desktop', 'azure-government'),
+    #    ('Anomoly Detector', 'usgov-arizona'),
+    #    ('Anomoly Detector', 'usgov-virginia'),
+    #    ('Microsoft Genomics', False),
 ])
-def test_isProductInPreview(availList, product):
-    assert len (availList.getProductPreviewRegions(product)) > 0
+def test_isProductInPreview(availList, product, cloud):
+    assert len(availList.getProductPreviewRegions(product, cloud)) > 0
+
 
 @pytest.mark.parametrize("product, expected_result", [
     ('Windows Virtual Desktop', 'usgov-non-regional'),
-#    ('Anomoly Detector', 'usgov-arizona'),
-#    ('Anomoly Detector', 'usgov-virginia'),
-#    ('Microsoft Genomics', False),
+    #    ('Anomoly Detector', 'usgov-arizona'),
+    #    ('Anomoly Detector', 'usgov-virginia'),
+    #    ('Microsoft Genomics', False),
 ])
 def test_isProductInPreviewInRegion(availList, product, expected_result):
-    
-    print (availList.getProductPreviewRegions(product))
-    
+
+    print(availList.getProductPreviewRegions(product))
+
     assert expected_result in availList.getProductPreviewRegions(product)
     assert True
     # previewList = availList.isProductInPreview(product)
-    
+
     # if expected_result != False:
     #     assert expected_result in previewList.keys()
     # else :
