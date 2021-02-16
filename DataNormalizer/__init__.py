@@ -27,10 +27,10 @@ def main(req: func.HttpRequest, cosmosDB: func.Out[func.Document]) -> func.HttpR
     # ***************************************************************
 
     sc = AuditScopeList()
-    sc.initialize()
+    #sc.initialize()
 
     av = AzGovProductAvailabilty()
-    av.initialize()
+    # av.initialize()
 
     m = merge(sc, av)
 
