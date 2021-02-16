@@ -12,16 +12,20 @@ AZGOV_AUDIT_SCOPE_LIST = "https://docs.microsoft.com/en-us/azure/azure-governmen
 
 # Helpers
 
-## Gets text from an HTML element
+# Gets text from an HTML element
+
+
 def text(elt):
     return elt.text_content().replace(u'\xa0', u' ').replace('✔️', "Check")
 
+
 def camelize(string):
     return ''.join(a.capitalize() for a in split('([^a-zA-Z0-9])', string)
-       if a.isalnum())
+                   if a.isalnum())
+
 
 class AuditScopeList:
-    def __init__(self):        
+    def __init__(self):
         self.__azurePublic = {}
         self.__azureGovt = {}
         self.__azPubCosmos = {}
@@ -29,22 +33,23 @@ class AuditScopeList:
         self.__azCosmos = []
         self.__azCosmosJson = {}
 
-        logging.debug ("AuditScope Created")
+        logging.debug("AuditScope Created")
 
     def initialize(self):
-        logging.debug ("AuditScope - Starting Initialization")
-        
+        logging.debug("AuditScope - Starting Initialization")
+
         page = requests.get(AZGOV_AUDIT_SCOPE_LIST)
         tree = html.fromstring(page.content)
 
-        logging.debug ("AuditScope - Page retrieved")
+        logging.debug("AuditScope - Page retrieved")
 
         html_tables = tree.xpath('//table')
 
-        logging.debug ("AuditScope - HTML Tables found: Length %d", len(html_tables))
+        logging.debug("AuditScope - HTML Tables found: Length %d",
+                      len(html_tables))
 
-        self.__azurePublic = self.__getDictionaryFromTable (html_tables[0])
-        self.__azureGovt   = self.__getDictionaryFromTable (html_tables[1])
+        self.__azurePublic = self.__getDictionaryFromTable(html_tables[0])
+        self.__azureGovt = self.__getDictionaryFromTable(html_tables[1])
 
         # self.__azPubCosmos = self.__getCosmosDBDocuments("Azure Public", self.__azurePublic)
         # self.__azGovCosmos = self.__getCosmosDBDocuments("Azure Government", self.__azureGovt)
@@ -53,22 +58,21 @@ class AuditScopeList:
         self.__parseIntoComosDBDocuments("Azure Government", self.__azureGovt)
         self.__parseIntoComosDBDocumentsMerged()
 
-        logging.debug ("AuditScope - Initialized")
+        logging.debug("AuditScope - Initialized")
 
+    def __parseIntoComosDBDocuments(self, cloud, dictionary):
 
-    def __parseIntoComosDBDocuments(self, cloud, dictionary):       
-        
         i = 0
         for service in dictionary.keys():
             svcDoc = {
                 'id': "sc-" + str(i),
                 "docType": "audit-scope",
                 'prod-id': service,
-                'cloud':cloud
+                'cloud': cloud
             }
 
             for scope in dictionary[service].keys():
-                
+
                 tmp = camelize(scope)
                 scopeCamel = tmp[0].lower() + tmp[1:]
 
@@ -80,11 +84,11 @@ class AuditScopeList:
             i = i+1
         # logging.debug (self.__azCosmos)
 
-    def __parseIntoComosDBDocumentsMerged(self): 
+    def __parseIntoComosDBDocumentsMerged(self):
 
         cosmos = {}
 
-        ### start with public
+        # start with public
 
         i = 0
         for svc in self.__azurePublic.keys():
@@ -92,45 +96,55 @@ class AuditScopeList:
                 'id': "sc-" + str(i),
                 "docType": "audit-scope",
                 'prod-id': svc,
-                'azure-public': {}
+                'azure-public': {
+                    'scopes': []
+                }
             }
             i = i + 1
 
-
-            for scope in self.__azurePublic[svc].keys():                    
+            for scope in self.__azurePublic[svc].keys():
                 tmp = camelize(scope)
                 scopeCamel = tmp[0].lower() + tmp[1:]
 
                 if self.__azurePublic[svc][scope] == "Check":
-                    svcDoc['azure-public'][scopeCamel] = True
+                    svcDoc['azure-public']['scopes'].append(scopeCamel)
+                    #svcDoc['azure-public'][scopeCamel] = True
 
             cosmos[svc] = svcDoc
 
-        ### lets do gov't
+        # lets do gov't
 
         for svc in self.__azureGovt.keys():
-            
+
             if svc in cosmos.keys():
                 svcDoc = cosmos[svc]
-                svcDoc['azure-government'] = {}
-            else:           
+                svcDoc['azure-government'] = {
+                    'scopes': []
+                }
+            else:
                 svcDoc = {
                     'id': "sc-" + str(i),
                     "docType": "audit-scope",
                     'prod-id': svc,
-                    'azure-government': {}
+                    'azure-public': {
+                        'scopes': []
+                    },
+                    'azure-government': {
+                        'scopes': []
+                    }
                 }
                 i = i + 1
 
-            for scope in self.__azureGovt[svc].keys():                    
+            for scope in self.__azureGovt[svc].keys():
                 tmp = camelize(scope)
                 scopeCamel = tmp[0].lower() + tmp[1:]
 
                 if self.__azureGovt[svc][scope] == "Check":
-                    svcDoc['azure-government'][scopeCamel] = True
+                    svcDoc['azure-government']['scopes'].append(scopeCamel)
+                    #svcDoc['azure-government'][scopeCamel] = True
 
             cosmos[svc] = svcDoc
-            
+
             self.__azCosmosJson = cosmos
 
     def __getCosmosDBDocuments(self, id, dictionary):
@@ -140,16 +154,16 @@ class AuditScopeList:
         }
 
         for service in dictionary.keys():
-            
+
             if service == 'Import / Export':
                 service = 'Import Export'
-            
+
             svcDoc = {
                 'serviceName': service
             }
 
             for scope in dictionary[service].keys():
-                
+
                 tmp = camelize(scope)
                 scopeCamel = tmp[0].lower() + tmp[1:]
 
@@ -185,61 +199,66 @@ class AuditScopeList:
 
     def getCosmosArray(self):
         return self.__azCosmos
-    
+
     def getCosmosJsonMerged(self):
         return self.__azCosmosJson
 
     def isAtAuditScope(self, service, scope):
-        logging.debug ('isAtAuditScope - Checking [' + service + '] at [' + scope + ']')
+        logging.debug(
+            'isAtAuditScope - Checking [' + service + '] at [' + scope + ']')
 
-        azPub = self.isAtAuditScopeForCloud(service,scope, "Azure Public", self.__azurePublic)
-        azGov = self.isAtAuditScopeForCloud(service,scope, "Azure Government", self.__azureGovt)
+        azPub = self.isAtAuditScopeForCloud(
+            service, scope, "Azure Public", self.__azurePublic)
+        azGov = self.isAtAuditScopeForCloud(
+            service, scope, "Azure Government", self.__azureGovt)
 
-        logging.debug ('isAtAuditScope - [%s] at [%s]. Azure Public [%s], Azure Gov [%s]',
-            service, scope, azPub, azGov)
+        logging.debug('isAtAuditScope - [%s] at [%s]. Azure Public [%s], Azure Gov [%s]',
+                      service, scope, azPub, azGov)
 
-        return (azPub | azGov)  
-    
+        return (azPub | azGov)
+
     def isAtAuditScopeForCloud(self, service, scope, cloudName, cloud):
-        
-        logging.debug ('isAtAuditScopeForCloud - Checking [%s] at [%s] in [%s]',
-            service, scope, cloudName)
+
+        logging.debug('isAtAuditScopeForCloud - Checking [%s] at [%s] in [%s]',
+                      service, scope, cloudName)
 
         if not cloud:
-            logging.info ('isAtAuditScopeForCloud - [' + cloudName + '] Does not exist')
+            logging.info(
+                'isAtAuditScopeForCloud - [' + cloudName + '] Does not exist')
             return False
 
         if not cloud.get(service):
-            logging.debug ('isAtAuditScopeForCloud - [' + service +'] Does not exist in [' + cloudName + ']')
+            logging.debug(
+                'isAtAuditScopeForCloud - [' + service + '] Does not exist in [' + cloudName + ']')
             return False
 
-
-        logging.debug ('isAtAuditScopeForCloud - Found [%s] in [%s]\n%s', 
-            service,
-            cloudName,
-            str(cloud.get(service)))
+        logging.debug('isAtAuditScopeForCloud - Found [%s] in [%s]\n%s',
+                      service,
+                      cloudName,
+                      str(cloud.get(service)))
 
         checkScope = cloud.get(service).get(scope)
 
         if str(checkScope).__contains__('Check'):
-            logging.debug ('isAtAuditScopeForCloud - [%s] in [%s], Check', 
-                service, cloudName)
+            logging.debug('isAtAuditScopeForCloud - [%s] in [%s], Check',
+                          service, cloudName)
             return True
 
-        logging.debug ('isAtAuditScopeForCloud - [%s] in [%s], No', 
-            service, cloudName)
-        
+        logging.debug('isAtAuditScopeForCloud - [%s] in [%s], No',
+                      service, cloudName)
+
         return False
 
     def __getDictionaryFromTable(self, table):
         table_as_list = list(table)
-        
+
         table_headers = [col.text.strip() for col in table_as_list[0][0]]
-       
-        tmp = [dict(zip(table_headers, [text(col) for col in row])) for row in table_as_list[1][0:]]
+
+        tmp = [dict(zip(table_headers, [text(col) for col in row]))
+               for row in table_as_list[1][0:]]
         d = {}
 
-        for i in tmp :
+        for i in tmp:
             x = i.pop('Azure Service')
             d[x] = i
 
