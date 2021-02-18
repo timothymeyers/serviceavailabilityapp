@@ -136,3 +136,5 @@ out.*
 app.py
 *.txt
 *.json
+scope_regions.tsv
+test.tsv
