@@ -11,6 +11,7 @@ def clean_product_name(name):
 
 # Brute Force data mapping
 
+
 service_map = {
     'Azure App Configuration': 'App Configuration',
     'Backup': 'Azure Backup',
@@ -27,7 +28,6 @@ service_map = {
     'Logic Apps': 'Azure Logic Apps',
     'Azure Machine Learning Services': 'Azure Machine Learning',
     'Azure RedHat OpenShift': 'Azure Red Hat OpenShift',
-    'Azure Resource Manager': 'Azure Resource Mover',
     'SQL Database': 'Azure SQL Database',
     'Stream Analytics': 'Azure Stream Analytics',
     'Time Series Insights': 'Azure Time Series Insights',
@@ -139,6 +139,7 @@ service_list = [
     'Azure Purview',
     'Azure Red Hat OpenShift',
     'Azure Resource Graph',
+    'Azure Resource Manager',
     'Azure Resource Mover',
     'Azure RTOS',
     'Azure Security Center',
@@ -580,3 +581,37 @@ usgov_regions = [
     "usgov-virginia",
     "usgov-non-regional"
 ]
+
+usdod_regions = [
+    "us-dod-central",
+    "us-dod-east",
+    "usgov-non-regional"
+]
+
+us_scopes = [
+    "dodCcSrgIl2",
+    "fedrampModerate",
+    "fedrampHigh",
+    "planned2021"
+]
+
+usgov_scopes = [
+    "dodCcSrgIl2",
+    "dodCcSrgIl4",
+    "dodCcSrgIl5AzureGov",
+    "dodCcSrgIl5AzureDod",
+    "fedrampHigh",
+    "dodCcSrgIl6"
+]
+
+scope_map = {
+    'dodCcSrgIl2': 'IL2',
+    'fedrampModerate': 'Fedramp Moderate',
+    'fedrampHigh': 'Fedramp High',
+    'planned2021': 'Planned for 2021',
+    'dodCcSrgIl4': 'IL4',
+    'dodCcSrgIl5AzureGov': 'IL5 in Gov Regions',
+    'dodCcSrgIl5AzureDod': 'IL5 in DoD Regions',
+    'dodCcSrgIl6': 'IL6'
+
+}
