@@ -467,7 +467,8 @@ class DataJoiner:
 
         for id in (maps.service_list + maps.capability_list):            
             for scope in (maps.us_scopes + maps.usgov_scopes) :
-                print ("Is %s at %s? \t" % (id, maps.scope_map[scope]), self.answer_isAtScope(id, scope))
+                if not scope.__contains__("Il5"):
+                    print ("Is %s at %s? \t" % (id, maps.scope_map[scope]), self.answer_isAtScope(id, scope))
 
             ## Special IL5 Use Case
             print ("Is %s at IL5? \t" % id, self.answer_isAtIL5(id))
