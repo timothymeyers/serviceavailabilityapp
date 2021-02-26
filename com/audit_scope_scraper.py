@@ -62,20 +62,23 @@ class AuditScopes:
         self.__audit_scope_dictionary = {svc: {} for svc in (maps.service_list + maps.capability_list)}
         
         for svc in maps.service_list:           
-            self.__audit_scope_dictionary[svc]['prod-id'] = svc
-            self.__audit_scope_dictionary[svc]['type'] = 'service'
-            self.__audit_scope_dictionary[svc]['azure-public'] = {'scopes':[]}
-            self.__audit_scope_dictionary[svc]['azure-government'] = {'scopes':[]}            
-            self.__audit_scope_dictionary[svc]['doc-type'] = 'audit-scope'
+            self.__audit_scope_dictionary[svc] = self.__init_blank_helper(svc,'service')
+
 
         for cap in maps.capability_list:           
-            self.__audit_scope_dictionary[cap]['prod-id'] = cap
-            self.__audit_scope_dictionary[cap]['type'] = 'capability' 
-            self.__audit_scope_dictionary[cap]['azure-public'] = {'scopes':[]} 
-            self.__audit_scope_dictionary[cap]['azure-government'] = {'scopes':[]}            
-            self.__audit_scope_dictionary[svc]['doc-type'] = 'audit-scope'
+            self.__audit_scope_dictionary[cap] = self.__init_blank_helper(cap,'capability')
 
         logging.debug("AuditScopes - Audit Scope Dictionary - Initialized")
+
+    def __init_blank_helper (self, id, type) -> dict:
+        return {
+            'prod-id': id,
+            'type': type,
+            'azure-public': {'scopes': []},
+            'azure-government': {'scopes': []},
+            'doc-type': 'audit-scope'
+        }
+            
 
     def __hydrate_audit_scope_dictionary(self, html_table, cloud):
 
