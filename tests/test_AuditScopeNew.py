@@ -6,10 +6,7 @@ from com.audit_scope_scraper import AuditScopes
 # "Fixtures"
 @pytest.fixture(scope="session")
 def asl():
-    l = AuditScopes()
-    # l.initialize()
-    return l
-
+    return AuditScopes()
 
 #Tests
 
@@ -58,5 +55,6 @@ def test_checkAzurePublic(asl, service, scope, expected_result):
     ('Azure Stream Analytics', 'FedRAMP High', True),    
     ('Azure Stream Analytics', 'DoD CC SRG IL 6', False),
 ])
+
 def test_checkAzureGovernment(asl, service, scope, expected_result):
     assert asl.isAtAuditScope(service, scope) == expected_result
