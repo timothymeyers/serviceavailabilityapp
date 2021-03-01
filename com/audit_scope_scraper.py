@@ -77,8 +77,7 @@ class AuditScopes:
             'azure-public': {'scopes': []},
             'azure-government': {'scopes': []},
             'doc-type': 'audit-scope'
-        }
-            
+        }           
 
     def __hydrate_audit_scope_dictionary(self, html_table, cloud):
 
