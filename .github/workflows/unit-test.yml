@@ -60,6 +60,6 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: code-coverage-app
-        publish-profile: ${{ secrets.azureWebAppPublishProfile }} # Replace with the name of your publish profile
+        publish-profile: ${{ secrets.AZUREWEBAPPPUBLISHPROFILE }} # Replace with the name of your publish profile
         package: htmlcov.zip
       #if: ${{ always() }}
