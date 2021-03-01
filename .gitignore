@@ -138,3 +138,4 @@ app.py
 *.json
 scope_regions.tsv
 test.tsv
+junit*
