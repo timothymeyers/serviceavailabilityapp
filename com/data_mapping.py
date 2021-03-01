@@ -1,16 +1,21 @@
 
 
-def clean_product_name(name):
+def clean_product_name(name, prod_type = ""):
+
+    name = name.strip().replace(u'\u2013', u'-')
+
+    # Ugh - special Data Box Capability edge case
+    if name == "Data Box" and prod_type.__contains__('capability'):
+        return name
 
     if (name in service_map):
         return service_map[name]
     elif (name in capability_map):
         return capability_map[name]
-
+    
     return name
 
 # Brute Force data mapping
-
 
 service_map = {
     'Azure App Configuration': 'App Configuration',
