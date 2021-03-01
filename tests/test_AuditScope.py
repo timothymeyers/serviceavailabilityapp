@@ -17,6 +17,7 @@ def test_isInitialized(scopeList):
     #assert scopeList.getAzurePublicJson()
     #assert scopeList.getAzureGovernmentJson()
     assert True
+    assert False
 
 def test_isAtAuditScopeForCloud_noCloud(scopeList):
     assert scopeList.isAtAuditScopeForCloud('','','', None) == False
