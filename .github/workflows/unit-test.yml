@@ -54,10 +54,12 @@ jobs:
       # Use always() to always run this step to publish test results when there are test failures
       if: ${{ always() }}
     # Deploy Code Coverage to App Service
+    - name: 'Zip up coverage-html'
+      run: zip htmlcov.zip htmlcov 
     - name: 'Run Azure webapp deploy action using publish profile credentials'
       uses: azure/webapps-deploy@v1
       with:
         app-name: code-coverage-app
         publish-profile: ${{ secrets.azureWebAppPublishProfile }} # Replace with the name of your publish profile
-        package: code-coverage-html.zip  # Specify the folder or file to deploy
+        package: htmlcov.zip
       #if: ${{ always() }}
