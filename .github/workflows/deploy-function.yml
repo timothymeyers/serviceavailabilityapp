@@ -21,7 +21,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
       - name: 'Login via Azure CLI'
         uses: azure/login@v1
         with:
